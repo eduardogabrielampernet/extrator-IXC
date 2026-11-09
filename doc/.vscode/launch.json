@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome",
+            "url": "https://youtube.com.br",
+            // Here it is!
+            "runtimeArgs": ["--load-extension=C:/Users/eduardo.santos/Documents/doc"]
+        },
+        { 
+            // Firefox equivalent
+            "type": "firefox",
+            "request": "launch",
+            "name": "Launch Firefox",
+            "url": "https://example.com/#this-could-be-anything",
+            "addonPath": "${C:\\Users\\eduardo.santos\\Documents\\doc}"
+        }
+    ]
+}

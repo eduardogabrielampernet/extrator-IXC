@@ -1,0 +1,13 @@
+&[vgr-theme="sales"] {
+    &[vgr-scheme="light"] {
+        --provedor-tally-button-background: rgba(var(--vg-color-dark), 80%);
+        --provedor-tally-button-background--hover: rgba(var(--vg-color-dark), 100%);
+        --provedor-tally-button-color: rgba(var(--vg-color-light), 100%);
+    }
+
+    &[vgr-scheme="dark"] {
+        --provedor-tally-button-background: rgba(var(--vg-color-ixcblue-800), 80%);
+        --provedor-tally-button-background--hover: rgba(var(--vg-color-ixcblue-900), 100%);
+        --provedor-tally-button-color: rgba(var(--vg-color-ixcgray-200), 100%);
+    }
+} 

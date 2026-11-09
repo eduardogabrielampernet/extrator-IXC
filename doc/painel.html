@@ -1,0 +1,37 @@
+<!doctype html>
+<html vgr-theme="provedor" vgr-scheme="light" lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Extrator IXC</title>
+  <link rel="stylesheet" href="painel.css">
+</head>
+
+<body>
+  <div class="main-container">
+    <main>
+      <div class="lista_opcoes">
+        <button id="gerar-retrabalho">Gerar retrabalho</button>
+      </div>
+      <div id="painel-main">
+        <p id="painel-erro" class="erro" role="alert"></p>
+      </div>
+    </main>
+  </div>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+  <script>
+    window.onLoadCallback = function(){
+        gapi.auth2.init({
+            client_id: '296780058563-ih6d5g7cpim50r1ud64i1fbpluhh33st.apps.googleusercontent.com'
+        });
+    }
+</script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+  <script src="visual/pag_form.js"></script>
+  <script src="interacao.js"></script>
+  <script src="googlesheet.js"></script>
+</body>
+
+</html>
