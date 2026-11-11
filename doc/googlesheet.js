@@ -1,12 +1,10 @@
 const LINHA_CABECALHO = 1;
 const ID_PLANILHA = "17UyvVEPZJqRi-ie0_cAk26bTJbd6BOlGeekOECGwVYI";
-const ABA = "RETRABALHOS"
-
 
 function montarArrayRetrabalho(dados){
   if(!typeof(dados) === Object) return
 
-  return [dados.id, dados.assunto, dados.equipe ? dados.equipe : "", dados.cidade,dados.data, dados?.motivo ? dados?.motivo : "" , dados?.descricao ? dados?.descricao: "", dados.responsavel, ]
+  return [dados.id, dados.assunto, dados.equipe ? dados.equipe : "", dados?.filial.includes("93") ? "CASCAVEL - MUNDIAL" : dados?.cidade , dados.data, dados?.motivo ? dados?.motivo : "" , dados?.descricao ? dados?.descricao: "", dados.responsavel, ]
 }
 
 function getToken() {
@@ -20,11 +18,11 @@ function getToken() {
   });
 }
 
-async function getRange(range) {
+async function getRange(range, aba) {
   try {
     const token = await getToken();
 
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${ID_PLANILHA}/values/${ABA}!${range}`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${ID_PLANILHA}/values/${aba}!${range}`;
 
     const response = await fetch(url, {
       method: 'GET',
@@ -49,12 +47,13 @@ async function getRange(range) {
   }
 }
 
-function escreverRange(values, callback) {
+function escreverRange(values, aba) {
+  console.log(aba)
 return new Promise(async (resolve, reject) => {
     // 1. Solicita o token de acesso ao Chrome
     var range
     try{
-        range =  String(await getRange("E:E") + 1)
+        range =  String(await getRange("E:E", aba) + 1)
         if(!range.match("\\d")){
           throw new Error("Erro ao consultar a planilha, tente novamente")
         }
@@ -66,7 +65,7 @@ return new Promise(async (resolve, reject) => {
       }
 
       // 2. Monta a URL do endpoint de Append do Google Sheets API v4
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${ID_PLANILHA}/values/${ABA}!A${range}:append?valueInputOption=USER_ENTERED`;
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${ID_PLANILHA}/values/${aba}!A${range}:append?valueInputOption=USER_ENTERED`;
 
       // A API exige um array de arrays para linhas/colunas
       const body = {

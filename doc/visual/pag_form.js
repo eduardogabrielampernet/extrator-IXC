@@ -95,8 +95,7 @@ function montarFormRetrabalho() {
                 return
             }
             
-            const escreverRangeRes = await escreverRange(dados)
-            console.log(`er ${escreverRangeRes}`)
+            const escreverRangeRes = await escreverRange(dados, abas.retrabalho)
             if (escreverRangeRes?.status){
                 painelErro.textContent = `Salvo com sucesso`
                 document.getElementById("painel-main").removeChild(form)

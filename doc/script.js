@@ -1,4 +1,4 @@
-async function verificarJanela() {
+async function verificarAba() {
     var retorno = {
         "ixc": false,
         "aba": false
@@ -14,10 +14,17 @@ async function verificarJanela() {
     return retorno
 }
 
+async function pegarJanela(){
+    try{
+        return await chrome.windows.getLastFocused()
+    } catch(e){
+        console.log(`ERRO: ${e}`)
+    }
+}
 
 // Roda na aba do IXC e devolve { id, assunto, equipe, cidade, data } ou null se não achar a OS.
 async function scriptChrome() {
-    var janela = await verificarJanela()
+    var janela = await verificarAba()
     if (!janela["ixc"]) {
         throw new Error("Abra uma página do IXC na aba ativa.")
     }
@@ -88,6 +95,7 @@ function extrairDados(campos) {
         equipe: valorDe(campos.equipe),
         cidade: valorDe(campos.cidade),
         responsavel: valorDe(campos.responsavel),
+        filial: valorDe(campos.filial),
         data: new Date().toLocaleDateString("pt-BR")
     }
 }
